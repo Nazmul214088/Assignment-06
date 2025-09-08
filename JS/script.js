@@ -14,8 +14,7 @@ const allCategories = (categories) => {
     }
 }
 
-// Load all tree card 
-showSpinner(true);
+// Load all tree card
 fetch("https://openapi.programming-hero.com/api/plants")
 .then(res => res.json())
 .then(data => showAllPlants(data.plants));
@@ -27,21 +26,23 @@ const showAllPlants = (allPlants) =>{
         const div = document.createElement('div');
         div.innerHTML = `
         <div class=" bg-white rounded-lg h-full">
-            <div class="w-full h-[310px]">
-                <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
+            <div class="w-full h-[250px]">
+                <img class="w-full h-full rounded-t-xl mb-3 object-cover"  src="${plant.image}">
             </div>
-            <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
-            <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
-            <div class="flex justify-between items-center mb-4">
-                <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1">${plant.category}</h3>
-                <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
+            <div class = " p-3">
+                <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
+                <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
+                    <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
+                </div>
+                <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
             </div>
-            <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
         </div>
         `;
+        div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
         parent.appendChild(div);
     }
-    showSpinner(false);
 }
  
 
@@ -62,7 +63,7 @@ const showDetailsPlantInfo = (plant) =>{
     div.innerHTML = `
         <div>
             <h1 class=" text-3xl font-bold">${plant.name}</h1>
-            <div class="w-full h-[310px]">
+            <div class="w-full h-[250px]">
                 <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
             </div>
             <h2><span class=" font-bold">Category: </span>${plant.category}</h2>
@@ -98,14 +99,14 @@ const showDataSpecificTree = (allPlants) => {
     for(plant of allPlants){
         const div = document.createElement('div');
         div.innerHTML = `
-        <div class=" bg-white rounded-lg h-full shadow-shadow_custom">
+        <div class=" bg-white rounded-lg h-full">
             <div class="w-full h-[250px]">
-                <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
+                <img class=" rounded-t-lg w-full h-full mb-3 object-cover"  src="${plant.image}">
             </div>
-            <div class=" p-4 shadow-[0_0_10px_#14532D]">
-                <h2 onclick="detailsPlantInfo(${plant.id})" class="btn text-[#18181B] text-[14px] font-semibold px-3 mb-2 mt-3">${plant.name}</h2>
-                <p class=" text-[12px] text-[#71717A] mb-2 px-3">${plant.description}</p>
-                <div class="flex justify-between items-center mb-4 px-3">
+            <div class=" p-3">
+                <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] font-semibold px-3 mb-2 mt-3">${plant.name}</h2>
+                <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+                <div class="flex justify-between items-center mb-4">
                     <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
                     <h3 class=" font-semibold text-[14px] p-1">৳<span id="price_${plant.id}">${plant.price}</span></h3>
                 </div>
@@ -113,6 +114,7 @@ const showDataSpecificTree = (allPlants) => {
             </div>
         </div>
         `;
+        div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
         parent.appendChild(div);
     }
     showSpinner(false);
@@ -135,7 +137,7 @@ const show_add_to_cart_data=(data)=>{
             <h1>${data.name}</h1>
             <p>৳<span id="price_${data.id}">${data.price}</span> x 1</p>
         </div>
-        <div onclick="x_btn(${data.id})">
+        <div onclick="x_btn(${data.id})" class= " text-red-600">
             <i class="fa-solid fa-x"></i>
         </div>
     `;
@@ -159,7 +161,7 @@ const x_btn = (id) =>{
 
 // Spinner function 
 
-const ManageSpinner = (status) => {
+const showSpinner = (status) => {
     if(status == true){
         document.getElementById('spinnerContainer').classList.remove('hidden');
         document.getElementById('allPlantContainer').classList.add('hidden');
