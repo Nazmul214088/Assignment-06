@@ -8,7 +8,7 @@ const allCategories = (categories) => {
     for(category of categories){
         const divSideBar = document.createElement('div');
         divSideBar.innerHTML = `
-        <button id="btn_${category.id}" onclick ="loadDataSpecificTree(${category.id})" class="text-left p-2 font-medium text-[#1F2937] transition-all duration-1000 w-full rounded-md hover:text-white hover:bg-[#15803D]">${category.category_name}</button>
+        <button id="btn_${category.id}" onclick ="loadDataSpecificTree(${category.id})" class="text-center p-2 font-medium text-[#1F2937] transition-all duration-1000 w-full rounded-md hover:text-white hover:bg-[#15803D]">${category.category_name}</button>
         `;
         parent.appendChild(divSideBar);
     }
