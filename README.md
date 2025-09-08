@@ -1,9 +1,26 @@
 1) What is the difference between var, let, and const?
-   Ans. <b>var: </b>Old way, function-scoped, can be redeclared & updated.<br>
+   Ans. var: </b>Old way, function-scoped, can be redeclared & updated.
         <b>let: </b> Block-scoped, can be updated but not redeclared in the same scope.
        <b>const: </b>Block-scoped, cannot be updated or redeclared (value is constant).<br>
        <b>Best practice:</b> Use let when the value will change, and const when it won’t. Avoid var.
-3) What is the difference between map(), forEach(), and filter()?
-4) What are arrow functions in ES6?
-5) How does destructuring assignment work in ES6?
-6) Explain template literals in ES6. How are they different from string concatenation?
+2) What is the difference between map(), forEach(), and filter()?
+   Ans.
+   forEach(): just loops through items, does not return anything.
+   map(): loops through items, returns a new array with changed values.
+   filter(): loops through items, returns a new array with only items that match a condition.
+3) What are arrow functions in ES6?
+   Ans.
+   Arrow functions (ES6) are a shorter way to write functions in JavaScript.
+   Great for small functions
+   
+4) How does destructuring assignment work in ES6?
+   Ans.
+   Destructuring = easy way to take values from arrays or objects and put them into variables.
+   example:
+   let [a, b] = [2, 5]; // a = 2, b = 5
+5) Explain template literals in ES6. How are they different from string concatenation?
+   Ans.
+   Template literals (ES6) are special strings written with backticks ( ` ` ) instead of quotes.
+   Features:
+      String interpolation (insert variables easily with ${ }).
+      Multi-line strings (no need for \n).
