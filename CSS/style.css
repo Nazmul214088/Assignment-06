@@ -1,0 +1,8 @@
+*{
+    font-family: "Inter", sans-serif;
+}
+
+.active{
+    background-color: #0c6e30;
+    color: #fff;
+}
