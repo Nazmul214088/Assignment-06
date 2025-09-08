@@ -29,7 +29,7 @@ const showAllPlants = (allPlants) =>{
             <div class="w-full h-[310px]">
                 <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
             </div>
-            <h2 onclick="detailsPlantInfo(${plant.id})" class="btn text-[#18181B] text-[14px] font-semibold mb-2 mt-3">${plant.name}</h2>
+            <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
             <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
             <div class="flex justify-between items-center mb-4">
                 <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1">${plant.category}</h3>
@@ -42,3 +42,111 @@ const showAllPlants = (allPlants) =>{
     }
 }
  
+
+
+const detailsPlantInfo = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showDetailsPlantInfo(data.plants));
+}
+
+// modal function start 
+const showDetailsPlantInfo = (plant) =>{
+    document.getElementById('detailsModal').showModal();
+    const parent = document.getElementById('detailsContainer');
+    const div = document.createElement('div');
+    parent.innerHTML = "";
+    div.innerHTML = `
+        <div>
+            <h1 class=" text-3xl font-bold">${plant.name}</h1>
+            <div class="w-full h-[310px]">
+                <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
+            </div>
+            <h2><span class=" font-bold">Category: </span>${plant.category}</h2>
+            <p><span class="font-bold">Price: </span> ৳${plant.price}</p>
+            <p><span class="font-bold">Description: </span>${plant.description}</p>
+        </div>
+        <div class="modal-action">
+            <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+            </form>
+        </div>
+    `;
+    parent.appendChild(div);
+}
+
+// show card click specific category 
+const loadDataSpecificTree = (id) => {
+    const url = `https://openapi.programming-hero.com/api/category/${id}`;
+    fetch(url)
+    .then(res=> res.json())
+    .then(data => showDataSpecificTree(data.plants));
+    const sideBarContainer = document.querySelectorAll('#sideBarContainer button');
+    for(let card of sideBarContainer){
+        card.classList.remove('active');
+    }
+    document.getElementById(`btn_${id}`).classList.add('active')
+}
+const showDataSpecificTree = (allPlants) => {
+    const parent = document.getElementById('allPlantContainer');
+    parent.innerHTML = "";
+    for(plant of allPlants){
+        const div = document.createElement('div');
+        div.innerHTML = `
+        <div class=" bg-white p-4 rounded-lg h-full">
+            <div class="w-full h-[310px]">
+                <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
+            </div>
+            <h2 onclick="detailsPlantInfo(${plant.id})" class="btn text-[#18181B] text-[14px] font-semibold mb-2 mt-3">${plant.name}</h2>
+            <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+            <div class="flex justify-between items-center mb-4">
+                <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1">${plant.category}</h3>
+                <h3 class=" font-semibold text-[14px] p-1">৳<span id="price_${plant.id}">${plant.price}</span</h3>
+            </div>
+            <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
+        </div>
+        `;
+        parent.appendChild(div);
+    }
+}
+
+
+const btn_add_to_cart = (id)=>{
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => show_add_to_cart_data(data.plants));
+}
+const show_add_to_cart_data=(data)=>{
+    const cartParent = document.getElementById('cartParent');
+    alert(`${data.name} tree has been added to the card.`);
+
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div>
+            <h1>${data.name}</h1>
+            <p>৳<span id="price_${data.id}">${data.price}</span> x 1</p>
+        </div>
+        <div onclick="x_btn(${data.id})">
+            <i class="fa-solid fa-x"></i>
+        </div>
+    `;
+    div.classList.add('flex', 'justify-between', 'items-center', 'mb-3','p-2', 'bg-white', 'w-full');
+    div.id = `parent_id_${data.id}`;
+    cartParent.appendChild(div);
+
+    let total_cost = parseInt(document.getElementById('total').innerText);
+    let current_price = parseInt(`${data.price}`);
+    total_cost = total_cost + current_price;
+    document.getElementById('total').innerText = total_cost;
+}
+
+const x_btn = (id) =>{
+    let total_cost = parseInt(document.getElementById('total').innerText);
+    let current_price = parseInt(document.getElementById(`price_${id}`).innerHTML);
+    total_cost = total_cost - current_price;
+    document.getElementById('total').innerText = total_cost;
+    document.getElementById(`parent_id_${id}`).remove();
+}
