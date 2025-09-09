@@ -39,7 +39,7 @@ const showAllPlants = (allPlants) =>{
                     </div>
                 </div>
             </div>
-                <div>
+                <div class="px-3 pb-3">
                     <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
                 </div>
         </div>
@@ -115,7 +115,7 @@ const showDataSpecificTree = (allPlants) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div class = "px-3 pb-3">
                 <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] px-3 font-medium text-white rounded-full">Add to Cart</button>
             </div>
         </div>
