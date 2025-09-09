@@ -25,27 +25,29 @@ const showAllPlants = (allPlants) =>{
     for(plant of allPlants){
         const div = document.createElement('div');
         div.innerHTML = `
-        <div class=" bg-white rounded-lg h-full">
-            <div class="w-full h-[250px]">
-                <img class="w-full h-full rounded-t-xl mb-3 object-cover"  src="${plant.image}">
-            </div>
-            <div class = " p-3">
-                <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
-                <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
-                    <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
+        <div class=" bg-white rounded-lg h-full grid content-between">
+            <div>
+                <div class="w-full h-[250px]">
+                    <img class="w-full h-full rounded-t-xl mb-3 object-cover"  src="${plant.image}">
                 </div>
-                <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
+                <div class = " p-3">
+                    <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
+                    <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
+                        <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
+                    </div>
+                </div>
             </div>
+                <div>
+                    <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
+                </div>
         </div>
         `;
         div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
         parent.appendChild(div);
     }
 }
- 
-
 
 const detailsPlantInfo = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`;
@@ -99,17 +101,21 @@ const showDataSpecificTree = (allPlants) => {
     for(plant of allPlants){
         const div = document.createElement('div');
         div.innerHTML = `
-        <div class=" bg-white rounded-lg h-full">
-            <div class="w-full h-[250px]">
-                <img class=" rounded-t-lg w-full h-full mb-3 object-cover"  src="${plant.image}">
-            </div>
-            <div class=" p-3">
-                <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] font-semibold px-3 mb-2 mt-3">${plant.name}</h2>
-                <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
-                    <h3 class=" font-semibold text-[14px] p-1">৳<span id="price_${plant.id}">${plant.price}</span></h3>
+        <div class=" bg-white rounded-lg h-full grid content-between">
+            <div>
+                <div class="w-full h-[250px]">
+                    <img class=" rounded-t-lg w-full h-full mb-3 object-cover"  src="${plant.image}">
                 </div>
+                <div class=" p-3">
+                    <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] font-semibold px-3 mb-2 mt-3">${plant.name}</h2>
+                    <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
+                        <h3 class=" font-semibold text-[14px] p-1">৳<span id="price_${plant.id}">${plant.price}</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div>
                 <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] px-3 font-medium text-white rounded-full">Add to Cart</button>
             </div>
         </div>
