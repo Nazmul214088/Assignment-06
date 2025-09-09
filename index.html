@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Green Earth</title>
+    <!-- favicon link -->
+    <link rel="shortcut icon" href="./assets/favicon.webp" type="image/x-icon">
     <!-- daisy UI cdn -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -70,20 +71,21 @@
          <div class=" text-center pt-20 pb-5">
             <h2 class=" font-semibold text-3xl text-[#1F2937]">Choose Your Trees</h2>
          </div>
-        <section class="xl:flex w-[96%] mx-auto">
+         <!-- Spinner start -->
+         <div class=" flex justify-center items-center h-15 w-full hidden" id="spinnerContainer">
+            <span class="loading loading-spinner text-neutral"></span>
+         </div>
+        <section class="xl:flex  xl:justify-center">
             <!-- Side Bar start -->
             <div id="sideBarContainer" class="basis-1/6">
                 <h1 class=" font-semibold text-[20px] text-center mb-4 hidden xl:block">Categories</h1>
-                <div>
-                    <button class=" p-2 font-medium text-[#1F2937] transition-all duration-1000 w-full rounded-md hover:text-white hover:bg-[#15803D] text-center">All Trees</button>
-                </div>
             </div>
             <!-- Trees card start -->
             <div class="basis-2/3">
                 <div id="allPlantContainer" class=" grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 </div>
                 <!-- About the Campaign section start -->
-                <div class="grid lg:grid-cols-2 gap-4 justify-center items-center py-20">
+                <div class="grid md:grid-cols-2 gap-4 justify-center items-center py-20">
                     <div class=" w-full">
                         <img width="100%" src="./assets/about.png">
                     </div>
@@ -117,16 +119,16 @@
         <!-- Our Impact section start -->
          <section class="bg-[#CFF0DC] px-8 py-20">
             <h2 class=" font-semibold text-3xl mb-8 text-center">Our Impact</h2>
-            <div class=" grid sm:grid-cols-3 gap-6">
-                <div class=" text-center py-10 bg-white rounded-xl">
-                    <h3 class=" font-semibold text-3xl text-[#15803D] mb-2">500K+</h3>
+            <div class=" grid sm:grid-cols-3 gap-6 mx-auto">
+                <div class=" hover:bg-[#a4ffc8] hover:shadow-[0_5px_10px_#14532D] transition-all duration-400 text-center py-10 bg-white rounded-xl shadow-[0_0_10px_#14532D]">
+                    <h3 class="font-semibold text-3xl text-[#15803D] mb-2">500K+</h3>
                     <p class="text-[#1F2937] text-[1rem]">Trees Planted</p>
                 </div>
-                <div class=" text-center py-10 bg-white rounded-xl">
+                <div class=" hover:bg-[#a4ffc8] hover:shadow-[0_5px_10px_#14532D] transition-all duration-400 text-center py-10 bg-white rounded-xl shadow-[0_0_10px_#14532D]">
                     <h3 class=" font-semibold text-3xl text-[#15803D] mb-2">120+</h3>
                     <p class="text-[#1F2937] text-[1rem]">Communities Involved</p>
                 </div>
-                <div class=" text-center py-10 bg-white rounded-xl">
+                <div class=" hover:bg-[#a4ffc8] hover:shadow-[0_5px_10px_#14532D] transition-all duration-400 text-center py-10 bg-white rounded-xl shadow-[0_0_10px_#14532D]">
                     <h3 class=" font-semibold text-3xl text-[#15803D] mb-2">30+</h3>
                     <p class="text-[#1F2937] text-[1rem]">Countries Reached</p>
                 </div>

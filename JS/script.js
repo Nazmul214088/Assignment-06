@@ -14,7 +14,7 @@ const allCategories = (categories) => {
     }
 }
 
-// Load all tree card 
+// Load all tree card
 fetch("https://openapi.programming-hero.com/api/plants")
 .then(res => res.json())
 .then(data => showAllPlants(data.plants));
@@ -25,24 +25,42 @@ const showAllPlants = (allPlants) =>{
     for(plant of allPlants){
         const div = document.createElement('div');
         div.innerHTML = `
-        <div class=" bg-white p-4 rounded-lg h-full">
-            <div class="w-full h-[310px]">
-                <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
+        <div class=" bg-white rounded-lg h-full grid content-between">
+            <div>
+                <div class="w-full h-[250px]">
+                    <img class="w-full h-full rounded-t-xl mb-3 object-cover"  src="${plant.image}">
+                </div>
+                <div class = " p-3">
+                    <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
+<<<<<<< HEAD
+                    <p class=" text-[12px] text-[#71717A] text-justify mb-2">${plant.description}</p>
+=======
+                    <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+>>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
+                        <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
+                    </div>
+                </div>
             </div>
-            <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
-            <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
-            <div class="flex justify-between items-center mb-4">
-                <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1">${plant.category}</h3>
-                <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
+<<<<<<< HEAD
+            <div>
+                <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] font-medium text-white rounded-full  mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
             </div>
-            <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
         </div>
         `;
+        div.classList.add('shadow-[0_0_10px_#012911]', 'rounded-3xl', 'h-full');
+=======
+                <div>
+                    <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] font-medium text-white rounded-full mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
+                </div>
+        </div>
+        `;
+        div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
+>>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
         parent.appendChild(div);
     }
 }
- 
-
 
 const detailsPlantInfo = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`;
@@ -60,7 +78,7 @@ const showDetailsPlantInfo = (plant) =>{
     div.innerHTML = `
         <div>
             <h1 class=" text-3xl font-bold">${plant.name}</h1>
-            <div class="w-full h-[310px]">
+            <div class="w-full h-[250px]">
                 <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
             </div>
             <h2><span class=" font-bold">Category: </span>${plant.category}</h2>
@@ -79,6 +97,7 @@ const showDetailsPlantInfo = (plant) =>{
 
 // show card click specific category 
 const loadDataSpecificTree = (id) => {
+    showSpinner(true);
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     fetch(url)
     .then(res=> res.json())
@@ -95,21 +114,37 @@ const showDataSpecificTree = (allPlants) => {
     for(plant of allPlants){
         const div = document.createElement('div');
         div.innerHTML = `
-        <div class=" bg-white p-4 rounded-lg h-full">
-            <div class="w-full h-[310px]">
-                <img class="w-full h-full rounded-xl mb-3 object-cover"  src="${plant.image}">
+        <div class=" bg-white rounded-lg h-full grid content-between">
+            <div>
+                <div class="w-full h-[250px]">
+                    <img class=" rounded-t-lg w-full h-full mb-3 object-cover"  src="${plant.image}">
+                </div>
+                <div class=" p-3">
+                    <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] font-semibold px-3 mb-2 mt-3">${plant.name}</h2>
+                    <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
+                        <h3 class=" font-semibold text-[14px] p-1">৳<span id="price_${plant.id}">${plant.price}</span></h3>
+                    </div>
+                </div>
             </div>
-            <h2 onclick="detailsPlantInfo(${plant.id})" class="btn text-[#18181B] text-[14px] font-semibold mb-2 mt-3">${plant.name}</h2>
-            <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
-            <div class="flex justify-between items-center mb-4">
-                <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1">${plant.category}</h3>
-                <h3 class=" font-semibold text-[14px] p-1">৳<span id="price_${plant.id}">${plant.price}</span</h3>
+            <div>
+<<<<<<< HEAD
+                <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] px-3 font-medium text-white rounded-full  mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
             </div>
-            <button onclick = "btn_add_to_cart(${plant.id})" class="btn w-full bg-[#15803D] font-medium text-white rounded-full">Add to Cart</button>
         </div>
         `;
+        div.classList.add('shadow-[0_0_10px_#012911]', 'rounded-3xl', 'h-full');
+=======
+                <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] px-3 font-medium text-white rounded-full mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
+            </div>
+        </div>
+        `;
+        div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
+>>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
         parent.appendChild(div);
     }
+    showSpinner(false);
 }
 
 
@@ -129,7 +164,7 @@ const show_add_to_cart_data=(data)=>{
             <h1>${data.name}</h1>
             <p>৳<span id="price_${data.id}">${data.price}</span> x 1</p>
         </div>
-        <div onclick="x_btn(${data.id})">
+        <div onclick="x_btn(${data.id})" class= " text-red-600">
             <i class="fa-solid fa-x"></i>
         </div>
     `;
@@ -143,6 +178,7 @@ const show_add_to_cart_data=(data)=>{
     document.getElementById('total').innerText = total_cost;
 }
 
+// Cross button function 
 const x_btn = (id) =>{
     let total_cost = parseInt(document.getElementById('total').innerText);
     let current_price = parseInt(document.getElementById(`price_${id}`).innerHTML);
@@ -150,3 +186,23 @@ const x_btn = (id) =>{
     document.getElementById('total').innerText = total_cost;
     document.getElementById(`parent_id_${id}`).remove();
 }
+
+// Spinner function 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
+const showSpinner = (status) => {
+    if(status == true){
+        document.getElementById('spinnerContainer').classList.remove('hidden');
+        document.getElementById('allPlantContainer').classList.add('hidden');
+    }
+    else{
+        document.getElementById('allPlantContainer').classList.remove('hidden');
+        document.getElementById('spinnerContainer').classList.add('hidden')
+    }
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
