@@ -32,35 +32,24 @@ const showAllPlants = (allPlants) =>{
                 </div>
                 <div class = " p-3">
                     <h2 onclick="detailsPlantInfo(${plant.id})" class="text-[#18181B] text-[14px] cursor-pointer font-semibold mb-2 mt-3">${plant.name}</h2>
-<<<<<<< HEAD
                     <p class=" text-[12px] text-[#71717A] text-justify mb-2">${plant.description}</p>
-=======
-                    <p class=" text-[12px] text-[#71717A] mb-2">${plant.description}</p>
->>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
                     <div class="flex justify-between items-center mb-4">
                         <h3 class=" font-geist text-[#15803D] text-[14px] font-medium bg-[#DCFCE7] rounded-full px-3 py-1 border border-[#05692a]">${plant.category}</h3>
                         <h3 class=" font-semibold text-[14px] p-1">৳${plant.price}</h3>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <div>
                 <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] font-medium text-white rounded-full  mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
             </div>
         </div>
         `;
         div.classList.add('shadow-[0_0_10px_#012911]', 'rounded-3xl', 'h-full');
-=======
-                <div>
-                    <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] font-medium text-white rounded-full mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
-                </div>
-        </div>
-        `;
-        div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
->>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
         parent.appendChild(div);
     }
 }
+ 
+
 
 const detailsPlantInfo = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`;
@@ -129,19 +118,11 @@ const showDataSpecificTree = (allPlants) => {
                 </div>
             </div>
             <div>
-<<<<<<< HEAD
                 <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] px-3 font-medium text-white rounded-full  mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
             </div>
         </div>
         `;
         div.classList.add('shadow-[0_0_10px_#012911]', 'rounded-3xl', 'h-full');
-=======
-                <button onclick = "btn_add_to_cart(${plant.id})" class="btn bg-[#15803D] px-3 font-medium text-white rounded-full mb-3 ml-[15px] w-[calc(100%-30px)]">Add to Cart</button>
-            </div>
-        </div>
-        `;
-        div.classList.add('shadow-[0_0_10px_#14532D]', 'rounded-3xl', 'h-full');
->>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
         parent.appendChild(div);
     }
     showSpinner(false);
@@ -188,10 +169,6 @@ const x_btn = (id) =>{
 }
 
 // Spinner function 
-<<<<<<< HEAD
-=======
-
->>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
 const showSpinner = (status) => {
     if(status == true){
         document.getElementById('spinnerContainer').classList.remove('hidden');
@@ -201,8 +178,4 @@ const showSpinner = (status) => {
         document.getElementById('allPlantContainer').classList.remove('hidden');
         document.getElementById('spinnerContainer').classList.add('hidden')
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> bb1aa0a3f5382df423af530cf02d3e7bd081aa1a
